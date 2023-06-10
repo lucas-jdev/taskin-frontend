@@ -35,7 +35,7 @@ export default function IndexTask({ tasks }: HomeProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const response = await fetch('http://taskin-backend-production.up.railway.app/api/task');
+    const response = await fetch('https://taskin-backend-production.up.railway.app/api/task');
     const data = await response.json();
     
     return {

@@ -2,6 +2,7 @@ import { Status, convertStatusToString } from "@/models/Task";
 import { FormEvent, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import { log } from "console";
 
 export default function TaskForm() {
     const [title, setTitle] = useState("");
@@ -51,16 +52,17 @@ export default function TaskForm() {
             .then(async(response) => {
                 if (response.status >= 400) {
                     const err = JSON.parse(JSON.stringify(await response.json()))
+                    log(err);
                     toast.error(err.message);
                     return;
                 }
 
                 if (taskId) {
                     toast.warn('Tarefa atualizada');
-                    router.push('/task');
+                    await router.push('/task');
                 } else {
                     toast.success('Tarefa cadastrada');
-                    router.push('/task');
+                    await router.push('/task');
                 }
             });
         

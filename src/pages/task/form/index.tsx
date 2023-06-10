@@ -15,11 +15,10 @@ export default function TaskForm() {
             fetch(`https://taskin-backend-production.up.railway.app/api/task/${taskId}`)
                 .then(async(response) => {
                     if(response.status >= 400){
-                        const err = JSON.parse(JSON.stringify(await response.json()))
-                        toast.error(err.message);
+                        toast.error('Erro ao buscar tarefa');
                         return;
                     }
-                    return response.json()
+                    return await response.json()
                 })
                 .then(data => {
                     setTitle(data.title);
@@ -50,8 +49,7 @@ export default function TaskForm() {
         await fetch(endpoint, options)
             .then(async(response) => {
                 if (response.status >= 400) {
-                    const data = await response.json();
-                    toast.error(data.message);
+                    toast.error('Erro ao cadastrar tarefa');
                     return;
                 }
 

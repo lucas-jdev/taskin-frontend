@@ -62,6 +62,8 @@ export default function TaskForm() {
                     toast.success('Tarefa cadastrada');
                     router.push('/task');
                 }
+            }).catch(err => {
+                toast.error(err.message);
             });
         
     };

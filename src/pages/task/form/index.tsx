@@ -49,10 +49,9 @@ export default function TaskForm() {
          
         await fetch(endpoint, options)
             .then(async(response) => {
-                const data = JSON.stringify(await response.json())
-                console.log(data)
                 if (response.status >= 400) {
-                    toast.error(data);
+                    const err = JSON.parse(JSON.stringify(await response.json()))
+                    toast.error(err.message);
                     return;
                 }
 

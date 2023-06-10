@@ -50,7 +50,8 @@ export default function TaskForm() {
         await fetch(endpoint, options)
             .then(async(response) => {
                 if (response.status >= 400) {
-                    toast.error('Erro ao cadastrar tarefa');
+                    const err = JSON.parse(await response.json())
+                    toast.error(err.message);
                     return;
                 }
 

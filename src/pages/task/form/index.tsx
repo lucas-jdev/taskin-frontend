@@ -48,20 +48,21 @@ export default function TaskForm() {
         };
          
         await fetch(endpoint, options)
-            .then(response => {
-                const dataJSON = JSON.stringify(response.json())
-                toast.info(JSON.parse(dataJSON).error)
-                if (response.status >= 400) {
-                    const err = JSON.parse(dataJSON)
-                    toast.error(err.message);
-                    return;
-                }
-
-                if (taskId) {
-                    toast.warn('Tarefa atualizada');
-                } else {
-                    toast.success('Tarefa cadastrada');
-                }
+            .then(async(response) => {
+                await response.json()
+                        .then(data => {
+                            if (response.status >= 400) {
+                                const err = JSON.parse(data)
+                                toast.error(err.message);
+                                return;
+                            }
+            
+                            if (taskId) {
+                                toast.warn('Tarefa atualizada');
+                            } else {
+                                toast.success('Tarefa cadastrada');
+                            }
+                });
             }).then(async() => await router.push('/task'));
         
     };

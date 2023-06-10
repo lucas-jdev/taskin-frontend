@@ -50,7 +50,7 @@ export default function TaskForm() {
         await fetch(endpoint, options)
             .then(response => {
                 const dataJSON = JSON.stringify(response.json())
-                toast.info(JSON.parse(dataJSON))
+                toast.info(JSON.parse(dataJSON).error)
                 if (response.status >= 400) {
                     const err = JSON.parse(dataJSON)
                     toast.error(err.message);
@@ -59,12 +59,10 @@ export default function TaskForm() {
 
                 if (taskId) {
                     toast.warn('Tarefa atualizada');
-                    router.push('/task');
                 } else {
                     toast.success('Tarefa cadastrada');
-                    router.push('/task');
                 }
-            });
+            }).then(async() => await router.push('/task'));
         
     };
 

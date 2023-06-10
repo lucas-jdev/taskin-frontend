@@ -2,7 +2,6 @@ import { Status, convertStatusToString } from "@/models/Task";
 import { FormEvent, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import { log } from "console";
 
 export default function TaskForm() {
     const [title, setTitle] = useState("");
@@ -52,7 +51,7 @@ export default function TaskForm() {
             .then(async(response) => {
                 if (response.status >= 400) {
                     const err = JSON.parse(JSON.stringify(await response.json()))
-                    log(err);
+                    console.log(err);
                     toast.error(err.message);
                     return;
                 }

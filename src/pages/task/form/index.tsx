@@ -113,7 +113,6 @@ export default function TaskForm() {
                     <option value={Status.NOT_STARTED}>{convertStatusToString(Status.NOT_STARTED)}</option>
                     <option value={Status.IN_PROGRESS}>{convertStatusToString(Status.IN_PROGRESS)}</option>
                     <option value={Status.COMPLETED}>{convertStatusToString(Status.COMPLETED)}</option>
-                    <option value={Status.ARCHIVED}>{convertStatusToString(Status.ARCHIVED)}</option>
                 </select>
             )}
             <br />

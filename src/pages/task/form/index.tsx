@@ -32,7 +32,7 @@ export default function TaskForm() {
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
 
-        const endpoint = taskId ? `http://localhost:8080/api/task/${taskId}` : "http://localhost:8080/api/task";
+        const endpoint = taskId ? `http://localhost:8080/api/task/${taskId}` : "http://taskin-backend-production.up.railway.app/api/task";
         const method = taskId ? "PUT" : "POST";
 
         const options = {

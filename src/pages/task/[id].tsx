@@ -30,7 +30,7 @@ export default function TaskPost({ task }: Task) {
 }
 
 export const getStaticPaths = async () => {
-    const response = await fetch('http://taskin-backend-production.up.railway.app/api/task')
+    const response = await fetch('https://taskin-backend-production.up.railway.app/api/task')
     const data = await response.json()
 
     const paths = data.map((task: TaskProps) => {
@@ -46,7 +46,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const response = await fetch(`http://taskin-backend-production.up.railway.app/api/task/${params?.id}`)
+    const response = await fetch(`https://taskin-backend-production.up.railway.app/api/task/${params?.id}`)
     const data = await response.json()
 
     return {

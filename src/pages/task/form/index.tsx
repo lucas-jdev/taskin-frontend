@@ -52,8 +52,7 @@ export default function TaskForm() {
                 await response.json()
                         .then(data => {
                             if (response.status >= 400) {
-                                const err = JSON.parse(data)
-                                toast.error(err.message);
+                                toast.error(data.message);
                                 return;
                             }
             

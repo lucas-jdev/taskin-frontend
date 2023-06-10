@@ -12,7 +12,7 @@ export default function TaskForm() {
 
     useEffect(() => {
         if (taskId) {
-            fetch(`http://localhost:8080/api/task/${taskId}`)
+            fetch(`http://taskin-backend-production.up.railway.app/api/task/${taskId}`)
                 .then(async(response) => {
                     if(response.status >= 400){
                         const err = JSON.parse(JSON.stringify(await response.json()))

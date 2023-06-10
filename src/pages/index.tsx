@@ -23,7 +23,7 @@ export default function Home() {
                     <Image
                         className="col-md-2"
                         alt="imagem-da-web" 
-                        src={"/organize-tasks.jpg"}
+                        src={"/organize-tasks.svg"}
                         fill
                     />
                 </div>

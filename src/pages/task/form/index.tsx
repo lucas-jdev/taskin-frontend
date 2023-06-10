@@ -15,8 +15,7 @@ export default function TaskForm() {
             fetch(`https://taskin-backend-production.up.railway.app/api/task/${taskId}`)
                 .then(async(response) => {
                     if(response.status >= 400){
-                        const err = JSON.parse(await response.json())
-                        toast.error(err.message);
+                        toast.error('Um imprevisto aconteceu, tente mudar algum campo ou tente novamente mais tarde');
                         return;
                     }
                     return response.json()
@@ -50,8 +49,7 @@ export default function TaskForm() {
         await fetch(endpoint, options)
             .then(async(response) => {
                 if (response.status >= 400) {
-                    const err = await response.json();
-                    toast.error(err.message);
+                    toast.error('Um imprevisto aconteceu, tente mudar algum campo ou tente novamente mais tarde');
                     return;
                 }
 
@@ -118,7 +116,7 @@ export default function TaskForm() {
               className={taskId ? "btn btn-warning" : "btn btn-success"} 
               type="submit"
             >
-                {taskId ? "Update" : "Create"}
+                {taskId ? "Atualizar" : "Criar"}
             </button>
         </form>
     );

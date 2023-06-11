@@ -2,6 +2,7 @@ import { Status, convertStatusToString } from "@/models/Task";
 import { FormEvent, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 export default function TaskForm() {
     const [title, setTitle] = useState("");
@@ -49,7 +50,8 @@ export default function TaskForm() {
         await fetch(endpoint, options)
             .then(async(response) => {
                 if (response.status >= 400) {
-                    toast.error('Um imprevisto aconteceu, tente mudar algum campo ou tente novamente mais tarde');
+                    const err = await response.json();
+                    toast.error(err.message);
                     return;
                 }
 
@@ -66,7 +68,7 @@ export default function TaskForm() {
 
     return (
         <form className="container" method="post" onSubmit={handleSubmit}>
-            <h1>{taskId ? "Edit Task" : "Create Task"}</h1>
+            <h1 className="mt-2">{taskId ? "Edit Task" : "Create Task"}</h1>
             <div className="mb-3">
                 <label 
                   className="form-label" 
@@ -118,6 +120,15 @@ export default function TaskForm() {
             >
                 {taskId ? "Atualizar" : "Criar"}
             </button>
+
+            {taskId && (
+                <Link
+                href="/task"
+                className="btn btn-primary m-md-1"
+            >
+                Listagem
+            </Link>
+            )}
         </form>
     );
 }

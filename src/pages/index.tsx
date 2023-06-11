@@ -9,7 +9,7 @@ export default function Home() {
                     className="d-flex col align-items-center"
                 >
                     <div>
-                        <h1>Bem vinde ao Taskin</h1>
+                        <h1>Bem vindo ao Taskin</h1>
                         <p className="text">
                             Seu Gerenciador de tarefas mais fácil do que imagina
                         </p>

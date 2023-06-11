@@ -12,20 +12,25 @@ export default function TaskForm() {
     const { taskId } = router.query;
 
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`https://taskin-backend-production.up.railway.app/api/task/${taskId}`);
+                if (response.status >= 400) {
+                    toast.error('Um imprevisto aconteceu, tente mudar algum campo ou tente novamente mais tarde');
+                    return;
+                }
+
+                const data = await response.json();
+                setTitle(data.title);
+                setDescription(data.description);
+                setStatus(data.status);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        
         if (taskId) {
-            fetch(`https://taskin-backend-production.up.railway.app/api/task/${taskId}`)
-                .then(async(response) => {
-                    if(response.status >= 400){
-                        toast.error('Um imprevisto aconteceu, tente mudar algum campo ou tente novamente mais tarde');
-                        return;
-                    }
-                    return response.json()
-                })
-                .then(data => {
-                    setTitle(data.title);
-                    setDescription(data.description);
-                    setStatus(data.status);
-                });
+        fetchData();
         }
     }, [taskId]);
 

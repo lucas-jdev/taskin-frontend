@@ -16,7 +16,7 @@ export default function TaskForm() {
             try {
                 const response = await fetch(`https://taskin-backend-production.up.railway.app/api/task/${taskId}`);
                 if (response.status >= 400) {
-                    toast.error('Um imprevisto aconteceu, tente mudar algum campo ou tente novamente mais tarde');
+                    toast.error('Tarefa não encontrada');
                     return;
                 }
 

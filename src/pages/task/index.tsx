@@ -12,7 +12,7 @@ export default function IndexTask({ tasks }: HomeProps) {
             <h1 className="container mt-2">
                 Tasks |{" "}
                 <Link
-                    href={"./form"}
+                    href={"/task/form"}
                     className="btn btn-success"
                 >
                     Nova Task

@@ -3,33 +3,30 @@ import { TaskProps } from "@/models/Task";
 import { GetServerSideProps } from "next";
 import TaskForm from "./form";
 import { Card } from "@/components/card";
+import Link from "next/link";
 
 export default function IndexTask({ tasks }: HomeProps) {
-    const [showForm, setShowForm] = useState(false);
-
-    const toggleForm = () => {
-        setShowForm(prevState => !prevState);
-    };
 
     return (
         <>
             <h1 className="container mt-2">
                 Tasks |{" "}
-                <button className={showForm ? "btn btn-danger" : "btn btn-success"} onClick={toggleForm}>{showForm ? "Fechar" : "Nova Task"}</button>
+                <Link
+                    href={"./form"}
+                    className="btn btn-success"
+                >
+                    Nova Task
+                </Link>
             </h1>
-            {showForm ? (
-                <TaskForm />
-            ) : (
-                <section className="container d-flex justify-content-center">
-                    <div className="d-flex flex-wrap">
-                            {tasks.map(task => (        
-                                <div key={task.id} className="w-33 p-2">
-                                    <Card style={{maxWidth: '340px'}} task={task} />       
-                                </div>
-                            ))}
-                    </div>
-                </section>    
-            )}
+            <section className="container d-flex justify-content-center">
+                <div className="d-flex flex-wrap">
+                        {tasks.map(task => (        
+                            <div key={task.id} className="w-33 p-2">
+                                <Card style={{maxWidth: '340px'}} task={task} />       
+                            </div>
+                        ))}
+                </div>
+            </section>    
         </>
     );
 }

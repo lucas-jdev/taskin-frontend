@@ -1,5 +1,5 @@
 import { TaskProps } from "@/models/Task";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Link from "next/link";
 
 export default function TaskPost({ task }: Task) {
@@ -29,33 +29,17 @@ export default function TaskPost({ task }: Task) {
     )
 }
 
-export const getStaticPaths = async () => {
-    const response = await fetch('https://taskin-backend-production.up.railway.app/api/task')
-    const data = await response.json()
-
-    const paths = data.map((task: TaskProps) => {
-        return {
-            params: { id: task.id }
-        }
-    })
-
-    return {
-        paths,
-        fallback: false
-    }
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     const response = await fetch(`https://taskin-backend-production.up.railway.app/api/task/${params?.id}`)
     const data = await response.json()
 
     return {
         props: {
             task: data
-        },
-        revalidate: 10
+        }
     }
 }
+
 
 interface Task {
     task: TaskProps;

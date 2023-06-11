@@ -129,7 +129,7 @@ export default function TaskForm() {
             {taskId && (
                 <Link
                 href="/task"
-                className="btn btn-primary m-md-1"
+                className="btn btn-primary ms-1"
             >
                 Listagem
             </Link>

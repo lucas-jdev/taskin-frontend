@@ -125,15 +125,13 @@ export default function TaskForm() {
             >
                 {taskId ? "Atualizar" : "Criar"}
             </button>
-
-            {taskId && (
-                <Link
+            <Link
                 href="/task"
                 className="btn btn-primary ms-1"
             >
                 Listagem
             </Link>
-            )}
+
         </form>
     );
 }

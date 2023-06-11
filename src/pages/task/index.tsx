@@ -13,7 +13,7 @@ export default function IndexTask({ tasks }: HomeProps) {
 
     return (
         <>
-            <h1 className="container">
+            <h1 className="container mt-2">
                 Tasks |{" "}
                 <button className={showForm ? "btn btn-danger" : "btn btn-primary round"} onClick={toggleForm}>{showForm ? "X" : "Nova Task"}</button>
             </h1>

@@ -30,7 +30,7 @@ export default function TaskForm() {
         };
         
         if (taskId) {
-        fetchData();
+            fetchData();
         }
     }, [taskId]);
 

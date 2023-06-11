@@ -19,13 +19,19 @@ export default function IndexTask({ tasks }: HomeProps) {
                 </Link>
             </h1>
             <section className="container d-flex justify-content-center">
-                <div className="d-flex flex-wrap">
-                        {tasks.map(task => (        
-                            <div key={task.id} className="w-33 p-2">
-                                <Card style={{maxWidth: '340px'}} task={task} />       
-                            </div>
-                        ))}
-                </div>
+                {tasks.length === 0 ? (
+                    <h2 className="title mt-3">
+                        Nenhuma task encontrada :(
+                    </h2>
+                    ) : 
+                    <div className="d-flex flex-wrap">
+                            {tasks.map(task => (        
+                                <div key={task.id} className="w-33 p-2">
+                                    <Card style={{maxWidth: '340px'}} task={task} />       
+                                </div>
+                            ))}
+                    </div>
+                    }
             </section>    
         </>
     );

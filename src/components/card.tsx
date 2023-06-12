@@ -19,13 +19,13 @@ export function Card({ task, style }: Task) {
   const remove = (id: string) => {
     deleteTask(id);
     toast.success("Task removida com sucesso");
-    router.reload();
+    router.push("/task");
   };
 
   const archive = (id: string) => {
     archiveTask(id);
     toast.success("Task arquivada com sucesso");
-    router.reload();
+    router.push("/task");
   };
 
   return (

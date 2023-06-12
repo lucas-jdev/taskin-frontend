@@ -6,8 +6,9 @@ import { CSSProperties } from "react";
 export function Card({ task, style }: Task) {
 
   const limiterDescription = (description: string) => {
-    if (description.length > 255) {
-      return description.substring(0, 255) + "...";
+    const limit = 100;
+    if (description.length > limit) {
+      return description.substring(0, limit) + "...";
     }
     return description;
   };

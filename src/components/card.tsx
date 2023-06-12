@@ -17,15 +17,25 @@ export function Card({ task, style }: Task) {
   };
 
   const remove = (id: string) => {
-    deleteTask(id);
-    toast.success("Task removida com sucesso");
-    window.location.reload();
+    deleteTask(id)
+    .then(async () => {
+      toast.success("Tarefa excluída com sucesso");
+      await router.push("/task");
+    })
+    .catch(() => {
+      toast.error("Erro ao excluir tarefa");
+    });
   };
 
   const archive = (id: string) => {
-    archiveTask(id);
-    toast.success("Task arquivada com sucesso");
-    router.push("/task");
+    archiveTask(id)
+    .then(async () => {
+      toast.success("Tarefa arquivada com sucesso");
+      await router.push("/task");
+    })
+    .catch(() => {
+      toast.error("Erro ao arquivar tarefa");
+    });
   };
 
   return (

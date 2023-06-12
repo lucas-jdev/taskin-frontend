@@ -19,7 +19,7 @@ export function Card({ task, style }: Task) {
   const remove = (id: string) => {
     deleteTask(id);
     toast.success("Task removida com sucesso");
-    router.push("/task");
+    window.location.reload();
   };
 
   const archive = (id: string) => {

@@ -30,11 +30,11 @@ export default function TaskForm() {
         };
         
         if (taskId) {
-            fetchData();
+            fetchData().catch(() => {});
         }
     }, [taskId]);
 
-    const handleSubmit = async (event: FormEvent) => {
+    const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
 
         const endpoint = taskId ? `https://taskin-backend-production.up.railway.app/api/task/${taskId}` : "https://taskin-backend-production.up.railway.app/api/task";
@@ -52,7 +52,7 @@ export default function TaskForm() {
             }),
         };
          
-        await fetch(endpoint, options)
+        fetch(endpoint, options)
             .then(async(response) => {
                 if (response.status >= 400) {
                     const err = await response.json();
@@ -67,7 +67,7 @@ export default function TaskForm() {
                     toast.success('Tarefa cadastrada');
                     await router.push('/task');
                 }
-            });
+            }).catch(() => {});
         
     };
 

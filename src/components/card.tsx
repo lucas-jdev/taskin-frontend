@@ -1,9 +1,11 @@
 import { TaskProps, convertStatusToString } from "@/models/Task";
 import { deleteTask, archiveTask } from "@/service/TaskService";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { CSSProperties } from "react";
 
 export function Card({ task, style }: Task) {
+  const router = useRouter();
 
   const limiterDescription = (description: string) => {
     const limit = 100;
@@ -11,6 +13,16 @@ export function Card({ task, style }: Task) {
       return description.substring(0, limit) + "...";
     }
     return description;
+  };
+
+  const remove = (id: string) => {
+    deleteTask(id);
+    router.push('/task').catch(() => {});
+  };
+
+  const archive = (id: string) => {
+    archiveTask(id);
+    router.push('/task').catch(() => {});
   };
 
   return (
@@ -35,7 +47,7 @@ export function Card({ task, style }: Task) {
         <Link
           href={"/task"}
           className="btn btn-danger m-1"
-          onClick={() => deleteTask(task.id)}
+          onClick={() => remove(task.id)}
         >
           Excluir
         </Link>
@@ -48,7 +60,7 @@ export function Card({ task, style }: Task) {
         <Link
           className="btn btn-warning m-1"
           href={"/task"}
-          onClick={() => archiveTask(task.id)}
+          onClick={() => archive(task.id)}
         >
           Arquivar
         </Link>

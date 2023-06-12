@@ -3,6 +3,7 @@ import { deleteTask, archiveTask } from "@/service/TaskService";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { CSSProperties } from "react";
+import { toast } from "react-toastify";
 
 export function Card({ task, style }: Task) {
   const router = useRouter();
@@ -17,12 +18,14 @@ export function Card({ task, style }: Task) {
 
   const remove = (id: string) => {
     deleteTask(id);
-    router.push('/task').catch(() => {});
+    toast.success("Task removida com sucesso");
+    router.reload();
   };
 
   const archive = (id: string) => {
     archiveTask(id);
-    router.push('/task').catch(() => {});
+    toast.success("Task arquivada com sucesso");
+    router.reload();
   };
 
   return (

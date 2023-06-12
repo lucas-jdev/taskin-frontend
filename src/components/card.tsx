@@ -4,6 +4,14 @@ import Link from "next/link";
 import { CSSProperties } from "react";
 
 export function Card({ task, style }: Task) {
+
+  const limiterDescription = (description: string) => {
+    if (description.length > 255) {
+      return description.substring(0, 255) + "...";
+    }
+    return description;
+  };
+
   return (
     <div className="col card m-2" style={style}>
       <div className="card-header">
@@ -14,7 +22,7 @@ export function Card({ task, style }: Task) {
         </span>
       </div>
       <div className="card-body">
-        <p className="text">{task.description}</p>
+        <p className="text">{limiterDescription(task.description)}</p>
       </div>
       <div className="card-footer text-center">
         <Link 

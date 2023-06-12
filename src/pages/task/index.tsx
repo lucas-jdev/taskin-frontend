@@ -21,7 +21,7 @@ export default function IndexTask({ tasks }: HomeProps) {
             <section className="container d-flex justify-content-center">
                 {tasks.length === 0 ? (
                     <h2 className="title mt-3">
-                        Nenhuma task encontrada :(
+                        Você não tem tasks :(
                     </h2>
                     ) : 
                     <div className="d-flex flex-wrap">
